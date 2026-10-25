@@ -106,7 +106,7 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
 /* ── HERO ── */
 #hero{position:relative;height:100vh;height:100dvh;min-height:600px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:64px;}
 .hero-bg{position:absolute;inset:0;overflow:hidden;background-color:var(--surface);}
-.hero-kb{position:absolute;inset:0;background:url('portada.jpg') center 30%/cover no-repeat;animation:kenburns 18s ease-in-out infinite alternate;}
+.hero-drift{position:absolute;inset:-3%;background:url('portada.jpg') center 30%/cover no-repeat;animation:heroDrift 26s ease-in-out infinite alternate}
 @keyframes kenburns{from{transform:scale(1)}to{transform:scale(1.07) translate(-1%,-1%)}}
 .hero-veil{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(239,191,179,.05) 0%,rgba(43,59,28,.3) 45%,rgba(43,59,28,.93) 100%);}
 .hero-content{position:relative;z-index:2;text-align:center;padding:0 24px}
@@ -403,12 +403,114 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
 .nf-list a.cur{font-style:italic;color:var(--blush)}
 .nf-foot{text-align:center;font-family:'Jost',sans-serif;font-weight:500;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent)}
 @media (prefers-reduced-motion:reduce){
-  .hero-kb,.loc-card,.dc-fig,.rsvp-breathe,.loc-pin::after,.hero-years,.music-fab::after{animation:none!important}
+  .hero-drift,.hero-shine,.loc-card,.dc-fig,.rsvp-breathe,.loc-pin::after,.hero-years,.music-fab::after{animation:none!important}
   #navFull,.nf-list li,#navPill{transition:opacity .3s!important}
 }
 .loc-hours{font-family:'Jost',sans-serif!important;font-weight:600!important;font-size:22px!important;color:var(--dark)!important}
 .gift-msg{font-size:18px!important;color:var(--dark)!important}
 .rsvp-toggle-btn.on{background:#EFBFB3!important;color:#2B3B1C!important}
+
+/* ══ PAQUETE DE EFECTOS ══ */
+#hero{align-items:flex-end;padding-bottom:0}
+#hero .hero-content{padding-bottom:110px}
+.hero-veil{background:linear-gradient(to bottom,rgba(43,59,28,0) 0%,rgba(43,59,28,.15) 35%,rgba(43,59,28,.72) 68%,rgba(32,44,20,.97) 100%)!important}
+@keyframes heroDrift{0%{transform:translate(0,0) scale(1.02)}50%{transform:translate(-1.6%,-1.2%) scale(1.07)}100%{transform:translate(1.4%,-2%) scale(1.10)}}
+.hero-shine{position:absolute;inset:0;mix-blend-mode:soft-light;background:linear-gradient(115deg,transparent 30%,rgba(255,244,214,.55) 46%,transparent 62%);background-size:260% 100%;animation:heroShine 9s ease-in-out infinite;pointer-events:none}
+@keyframes heroShine{0%{background-position:130% 0}100%{background-position:-30% 0}}
+.hero-meta{display:block;margin-top:14px;font-family:'Jost',sans-serif;font-weight:500;font-size:15px;letter-spacing:.2em;text-transform:uppercase;color:#F0E8D0}
+.scroll-hint{z-index:3}
+/* fundidos entre secciones */
+.wrap>section,.wrap>.ornament,.wrap>footer{position:relative;isolation:isolate}
+.wrap>.ornament{background:transparent!important}
+.sf{position:absolute;left:0;right:0;z-index:-1;pointer-events:none}
+.sf.t{top:0}.sf.b{bottom:0}
+/* tintas */
+.ink-bg{position:absolute;inset:0;z-index:-2;overflow:hidden;pointer-events:none;-webkit-mask-image:linear-gradient(transparent 0,#000 150px,#000 calc(100% - 150px),transparent);mask-image:linear-gradient(transparent 0,#000 150px,#000 calc(100% - 150px),transparent)}
+.ink-bg i{position:absolute;inset:-6%;background-size:cover;background-position:center;opacity:.85;animation:inkDrift 28s ease-in-out infinite alternate}
+.ink-bg.flip i{transform:scaleX(-1);animation-name:inkDriftF}
+@keyframes inkDrift{0%{transform:translate(0,0) scale(1) rotate(0)}100%{transform:translate(-2.5%,2.5%) scale(1.1) rotate(.6deg)}}
+@keyframes inkDriftF{0%{transform:scaleX(-1) translate(0,0) scale(1) rotate(0)}100%{transform:scaleX(-1) translate(2.5%,-2.5%) scale(1.1) rotate(-.6deg)}}
+.ink-bg ~ * , .ink-bg ~ * *{text-shadow:0 0 14px rgba(32,44,20,.85),0 0 3px rgba(32,44,20,.6)}
+.ink-bg ~ .loc-grid *,.ink-bg ~ .rsvp-card *,.ink-bg ~ .gift-card *{text-shadow:none}
+/* levitación */
+@keyframes levitate{0%,100%{transform:translateY(0) rotate(-.6deg)}50%{transform:translateY(-9px) rotate(.6deg)}}
+.loc-card{animation:levitate 6.5s ease-in-out infinite!important}
+.loc-card:nth-child(2){animation-delay:-2.2s!important}
+.fam-block{animation:levitate 6.5s ease-in-out infinite;background:rgba(43,59,28,.55);border:1px solid rgba(212,175,55,.3);border-radius:18px;padding:20px 16px;max-width:360px;margin-left:auto;margin-right:auto}
+.fam-block:nth-of-type(2){animation-delay:-4.1s}
+/* dress code */
+.dc-figs2{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:340px;margin:6px auto 26px}
+.dc-fig2{margin:0;display:flex;flex-direction:column;align-items:center;animation:levitate 6.5s ease-in-out infinite;transform-origin:50% 100%}
+.dc-fig2:nth-child(2){animation-delay:-2.2s}
+.dc-fig2 img{height:230px;width:auto;max-width:100%;object-fit:contain;filter:drop-shadow(0 12px 18px rgba(0,0,0,.35))}
+.dc-fig2 figcaption{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:var(--dark);margin-top:10px}
+.dc-fig-sub{font-family:'Jost',sans-serif;font-weight:500;font-size:15px;color:var(--accent)}
+.dc-swap{display:flex;justify-content:center;gap:40px;margin:10px auto 24px;--d:96px}
+.dc-sw2{display:flex;flex-direction:column;align-items:center;gap:8px;width:56px}
+.dc-sw2:nth-child(1){animation:swapA 7s ease-in-out infinite}
+.dc-sw2:nth-child(2){animation:swapB 7s ease-in-out infinite}
+@keyframes swapA{0%,30%{transform:translateX(0)}45%,80%{transform:translateX(var(--d))}95%,100%{transform:translateX(0)}}
+@keyframes swapB{0%,30%{transform:translateX(0)}45%,80%{transform:translateX(calc(var(--d) * -1))}95%,100%{transform:translateX(0)}}
+.dc-dot{width:52px;height:52px;border-radius:50%;position:relative;overflow:hidden;border:2px solid #D4AF37;animation:dotGlow 2.6s ease-in-out infinite}
+.dc-dot::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.7) 50%,transparent 70%);background-size:250% 100%;animation:heroShine 3.5s ease-in-out infinite}
+@keyframes dotGlow{0%,100%{box-shadow:0 0 0 0 rgba(212,175,55,.0)}50%{box-shadow:0 0 18px 4px rgba(212,175,55,.55)}}
+.dc-sw2-n{font-family:'Jost',sans-serif;font-weight:600;font-size:15px;color:var(--dark)}
+/* lluvia de sobres */
+.env-rain{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.env-rain-item{position:absolute;top:-50px;will-change:transform;opacity:0}
+#regalos .env-stage{position:relative;z-index:1}
+.env-interactive{display:flex;flex-direction:column;align-items:center;cursor:pointer;-webkit-tap-highlight-color:transparent;outline:none;border:none;background:none;padding:0;margin:26px auto 0;opacity:0;touch-action:manipulation}
+.env-body{perspective:700px;position:relative;width:min(258px,74vw);aspect-ratio:260/200;filter:drop-shadow(0 12px 26px rgba(0,0,0,.35))}
+.env-body svg.env-svg{width:100%;height:100%;display:block}
+.env-flap-wrap{position:absolute;top:23%;left:6.9%;width:86.2%;height:43%;transform-origin:top center;transform-style:preserve-3d;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .65s cubic-bezier(.4,0,.2,1);pointer-events:none;z-index:2}
+.env-interactive.open .env-flap-wrap{transform:rotateX(-175deg)}
+.env-seal{position:absolute;top:52%;left:50%;width:23%;aspect-ratio:1;transform:translate(-50%,-50%);z-index:3;transition:opacity .35s ease,transform .5s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.env-interactive.open .env-seal{opacity:0;transform:translate(-50%,-50%) scale(.7)}
+.env-open-content{overflow:hidden;max-height:0;opacity:0;transition:max-height .55s .3s ease,opacity .4s .38s ease;display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 16px;text-align:center;pointer-events:none}
+.env-interactive.open .env-open-content{max-height:320px;opacity:1;pointer-events:auto;margin-top:20px}
+.env-mailbox-icon{width:42px;height:42px;color:#D4AF37;margin-top:6px}
+.env-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;line-height:1.25;color:#F7E7CE;background:linear-gradient(100deg,#B8923A,#F7E7CE 40%,#D4AF37 60%,#B8923A);background-size:220% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:goldSweep 7s linear infinite}
+.env-desc{font-family:'Jost',sans-serif;font-size:17px;font-weight:500;color:var(--dark);line-height:1.6;max-width:300px}
+.env-tap-hint{display:inline-block;background:none;border:none;cursor:pointer;touch-action:manipulation;min-height:44px;padding:10px 18px;font-family:'Jost',sans-serif;font-weight:600;font-size:14px;letter-spacing:.24em;text-transform:uppercase;color:#E9DFB4;margin-top:14px;opacity:0;transition:opacity .5s ease;position:relative;z-index:1}
+.env-tap-hint.show{opacity:.9;animation:envHintPulse 2.4s ease-in-out infinite}
+@keyframes envHintPulse{0%,100%{opacity:.55}50%{opacity:1}}
+.env-body.landed{animation:envBreathe 3.6s ease-in-out infinite}
+@keyframes envBreathe{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+/* galería 3D */
+.wheel-scene{position:relative;width:100%;height:470px;margin:30px auto 0;perspective:1200px;overflow:visible}
+.wheel-ring{position:absolute;inset:0;transform-style:preserve-3d;cursor:grab;touch-action:pan-y}
+.wheel-ring.dragging{cursor:grabbing}
+.wheel-card{position:absolute;width:160px;height:224px;left:50%;top:38%;margin-left:-80px;margin-top:-112px;transform-style:preserve-3d;user-select:none;-webkit-user-select:none}
+.wc-face{width:100%;height:100%;border-radius:14px;overflow:hidden;border:1.5px solid rgba(212,175,55,.55);box-shadow:0 14px 34px rgba(0,0,0,.4);background:var(--card)}
+.wc-face img,.wc-refl img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.wc-refl{position:absolute;left:0;right:0;top:100%;height:100%;margin-top:6px;transform:scaleY(-1);border-radius:14px;overflow:hidden;opacity:.5;pointer-events:none}
+.wc-refl i{position:absolute;inset:0;background:linear-gradient(to top,rgba(53,73,34,.2) 0%,var(--surface) 55%)}
+@media(min-width:768px){.wheel-card{width:200px;height:280px;margin-left:-100px;margin-top:-140px}.wheel-scene{height:560px}}
+/* RSVP estilo jennifer */
+.rsvp-hi{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:32px;color:var(--dark);margin:6px auto 10px;line-height:1.25}
+.rsvp-pases-row{display:flex;justify-content:center;gap:12px;margin:8px 0 6px}
+.rsvp-pases{display:inline-flex;flex-direction:column;align-items:center;padding:12px 26px;border:1px solid rgba(212,175,55,.45);border-radius:16px;background:rgba(43,59,28,.6)}
+.rsvp-pases-label{font-family:'Jost',sans-serif;font-weight:600;font-size:13px;letter-spacing:3px;text-transform:uppercase;color:var(--accent)}
+.rsvp-pases-num{font-family:'Jost',sans-serif;font-weight:600;font-size:46px;line-height:1.05;color:#F7E7CE}
+.rsvp-dl{font-family:'Jost',sans-serif;font-weight:600;font-size:15px;color:var(--dark);margin:8px 0 14px;text-align:center}
+.rsvp-toggle{display:grid!important;grid-template-columns:1fr 1fr;gap:10px}
+.rsvp-toggle-btn{border-radius:14px!important;min-height:52px!important;font-weight:600!important}
+.rsvp-input{width:100%;min-height:52px;padding:12px 16px;border-radius:12px;border:1.5px solid rgba(239,191,179,.5);background:#F0E8D0;font-family:'Jost',sans-serif;font-weight:500;font-size:16px;color:#22301a;outline:none;margin-top:10px}
+.rsvp-input::placeholder{color:#5d6650}
+.rsvp-input:focus{border-color:#D4AF37;box-shadow:0 0 0 3px rgba(212,175,55,.25)}
+.rsvp-btn2{width:100%;margin-top:18px;min-height:56px;border-radius:999px;border:none;background:linear-gradient(100deg,#B8923A,#E8CF7A 45%,#D4AF37 60%,#B8923A);color:#22301a;font-family:'Jost',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;animation:respira 3.2s ease-in-out infinite}
+.rsvp-btn2:disabled{opacity:.5;cursor:not-allowed;animation:none}
+/* 10. textos con degradado: que no se corten */
+.hero-years,.env-title,.ld-mono{padding:.22em .45em;margin-left:-.45em;margin-right:-.45em;margin-top:-.22em;margin-bottom:-.22em;line-height:1.25;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hero-years{margin-top:calc(16px - .22em)}
+@media (prefers-reduced-motion:reduce){
+  .hero-drift,.hero-shine,.ink-bg i,.loc-card,.fam-block,.dc-fig2,.dc-sw2,.dc-dot,.dc-dot::after,.env-body.landed,.env-tap-hint.show,.rsvp-btn2{animation:none!important}
+}
+.hero-meta2{margin-top:4px;font-weight:600;color:#E9DFB4}
+.wc-refl{height:55%!important}
+.wheel-scene{height:500px}
+#rsvpNombresWrap .rsvp-input{background:#F0E8D0!important;color:#22301a!important;border:1.5px solid rgba(212,175,55,.6)!important;border-radius:12px!important}
+#rsvpNombresWrap .rsvp-input::placeholder{color:#5d6650!important;opacity:1}
 </style>
 </head>
 <body>
@@ -436,7 +538,7 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
 
   <!-- HERO -->
   <section id="hero">
-    <div class="hero-bg"><div class="hero-kb"></div></div>
+    <div class="hero-bg"><i class="hero-drift"></i><i class="hero-shine"></i></div>
     <div class="hero-veil"></div>
     <div class="hero-content">
       <span class="hero-eyebrow rv">Renovamos nuestros votos</span>
@@ -444,6 +546,8 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
       <span class="hero-amp rv">&amp;</span>
       <span class="hero-groom rv">Mary</span>
       <span class="hero-years rv">15 años de casados</span>
+      <span class="hero-meta rv">Brooklyn, New York</span>
+      <span class="hero-meta hero-meta2 rv">26 &middot; 12 &middot; 2026</span>
     </div>
     <div class="scroll-hint" id="scrollHint">
       <span class="scroll-hint-txt">Desliza</span>
@@ -509,6 +613,7 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
 
   <!-- FRASE -->
   <section id="quote" class="sec sec--bg bot-frame">
+    <div class="ink-bg " aria-hidden="true"><i style="background-image:url('ink/ink-top.webp')"></i></div>
     <p class="quote-intro rv">
       Hace quince años Dios unió nuestros caminos…<br>
       hoy le damos gracias por cada día, por nuestra familia
@@ -523,6 +628,7 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
 
   <!-- FAMILIA -->
   <section id="familia" class="sec sec--bg">
+    <div class="ink-bg flip" aria-hidden="true"><i style="background-image:url('ink/ink-oval.webp')"></i></div>
     <p class="eyebrow rv">Con la bendición de Dios y en compañía de</p>
     <h2 class="script-title rv">Nuestra Familia</h2>
     <div class="fam-block">
@@ -567,41 +673,19 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
     <p class="eyebrow rv">Nosotros</p>
     <h2 class="script-title rv">Nuestra Historia</h2>
     <p class="section-sub rv">Quince años de momentos que nos trajeron hasta aquí</p>
-    <div class="drop-stage" id="dropStage">
-      <div class="drop-photo" id="dropP1">
-        <img src="foto1.jpg" alt="Sergio &amp; Mary">
-        <span class="drop-photo-label">Siempre juntos</span>
-      </div>
-      <div class="drop-photo" id="dropP2">
-        <img src="foto2.jpg" alt="Sergio &amp; Mary">
-        <span class="drop-photo-label">Atardeceres</span>
-      </div>
-      <div class="drop-photo" id="dropP3">
-        <img src="foto3.jpg" alt="Sergio &amp; Mary">
-        <span class="drop-photo-label">Dijo que sí</span>
-      </div>
-      <div class="drop-photo" id="dropP4">
-        <img src="foto4.jpg" alt="Sergio &amp; Mary">
-        <span class="drop-photo-label">Nuestra boda</span>
-      </div>
-      <div class="drop-photo" id="dropP5">
-        <img src="foto5.jpg" alt="Sergio &amp; Mary">
-        <span class="drop-photo-label">Nuestra historia</span>
-      </div>
-      <div class="drop-photo" id="dropP6">
-        <img src="foto6.jpg" alt="Sergio &amp; Mary">
-        <span class="drop-photo-label">Nosotros</span>
-      </div>
-      <div class="drop-photo" id="dropP7">
-        <img src="foto7.jpg" alt="Sergio &amp; Mary">
-        <span class="drop-photo-label">Con el corazón</span>
-      </div>
-      <div class="drop-photo" id="dropP8">
-        <img src="foto8.jpg" alt="Sergio &amp; Mary">
-        <span class="drop-photo-label">¡Otra vez sí!</span>
+    <div class="wheel-scene" id="wheel-scene">
+      <div class="wheel-ring" id="wheel-ring">
+        <div class="wheel-card" data-src="foto1.jpg"><div class="wc-face"><img src="foto1.jpg" alt="Sergio &amp; Mary" draggable="false"></div><div class="wc-refl" aria-hidden="true"><img src="foto1.jpg" alt=""><i></i></div></div>
+        <div class="wheel-card" data-src="foto2.jpg"><div class="wc-face"><img src="foto2.jpg" alt="Sergio &amp; Mary" draggable="false"></div><div class="wc-refl" aria-hidden="true"><img src="foto2.jpg" alt=""><i></i></div></div>
+        <div class="wheel-card" data-src="foto3.jpg"><div class="wc-face"><img src="foto3.jpg" alt="Sergio &amp; Mary" draggable="false"></div><div class="wc-refl" aria-hidden="true"><img src="foto3.jpg" alt=""><i></i></div></div>
+        <div class="wheel-card" data-src="foto4.jpg"><div class="wc-face"><img src="foto4.jpg" alt="Sergio &amp; Mary" draggable="false"></div><div class="wc-refl" aria-hidden="true"><img src="foto4.jpg" alt=""><i></i></div></div>
+        <div class="wheel-card" data-src="foto5.jpg"><div class="wc-face"><img src="foto5.jpg" alt="Sergio &amp; Mary" draggable="false"></div><div class="wc-refl" aria-hidden="true"><img src="foto5.jpg" alt=""><i></i></div></div>
+        <div class="wheel-card" data-src="foto6.jpg"><div class="wc-face"><img src="foto6.jpg" alt="Sergio &amp; Mary" draggable="false"></div><div class="wc-refl" aria-hidden="true"><img src="foto6.jpg" alt=""><i></i></div></div>
+        <div class="wheel-card" data-src="foto7.jpg"><div class="wc-face"><img src="foto7.jpg" alt="Sergio &amp; Mary" draggable="false"></div><div class="wc-refl" aria-hidden="true"><img src="foto7.jpg" alt=""><i></i></div></div>
+        <div class="wheel-card" data-src="foto8.jpg"><div class="wc-face"><img src="foto8.jpg" alt="Sergio &amp; Mary" draggable="false"></div><div class="wc-refl" aria-hidden="true"><img src="foto8.jpg" alt=""><i></i></div></div>
       </div>
     </div>
-    <span class="drop-hint rv" id="dropHint">Toca cada foto para expandirla</span>
+    <span class="drop-hint rv">Desliza para girar · toca una foto para verla</span>
   </section>
 
   <!-- ORNAMENTO -->
@@ -652,6 +736,7 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
 
   <!-- UBICACIÓN -->
   <section id="ubicacion" class="sec sec--surface">
+    <div class="ink-bg " aria-hidden="true"><i style="background-image:url('ink/ink-corner.webp')"></i></div>
     <p class="eyebrow rv">Dónde celebramos</p>
     <h2 class="script-title rv">Ubicación</h2>
     <div class="loc-grid rv">
@@ -713,6 +798,7 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
 
   <!-- ITINERARIO BOTÁNICO -->
   <section id="itinerario" class="sec sec--bg">
+    <div class="ink-bg flip" aria-hidden="true"><i style="background-image:url('ink/ink-hero.webp')"></i></div>
     <p class="eyebrow rv">Programa del Día</p>
     <h2 class="script-title rv">Itinerario</h2>
     <!-- Botanical sub-ornament -->
@@ -820,18 +906,19 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
 
   <!-- DRESS CODE -->
   <section id="dresscode" class="sec sec--blush bot-frame">
+    <div class="ink-bg flip" aria-hidden="true"><i style="background-image:url('ink/ink-top.webp')"></i></div>
     <p class="eyebrow rv">Etiqueta</p>
     <h2 class="script-title rv">Dress Code</h2>
     <p class="dc-subtitle rv">Tropical</p>
     <p class="dc-palette-note rv">Vístete tropical: vestidos con flores o guayaberas.<br>Te pedimos amablemente evitar el blanco y el rojo.</p>
-    <div class="dc-figs rv" aria-hidden="true">
-      <svg class="dc-fig" viewBox="0 0 80 110" fill="none"><path d="M40 8c6 0 10 4 10 9s-4 9-10 9-10-4-10-9 4-9 10-9z" fill="#F0E8D0" opacity=".85"/><path d="M30 30h20l6 16-8 4 4 52H28l4-52-8-4z" fill="#EFBFB3" opacity=".9"/><circle cx="36" cy="58" r="4" fill="#A8BC78"/><circle cx="46" cy="72" r="5" fill="#F5D4CC"/><circle cx="34" cy="86" r="4" fill="#A8BC78"/><circle cx="47" cy="94" r="3.5" fill="#F0E8D0"/></svg>
-      <svg class="dc-fig" viewBox="0 0 80 110" fill="none"><path d="M40 8c6 0 10 4 10 9s-4 9-10 9-10-4-10-9 4-9 10-9z" fill="#F0E8D0" opacity=".85"/><path d="M24 30h32l4 40H20z" fill="#E9DFB4" opacity=".92"/><path d="M33 30v40M47 30v40" stroke="#A8BC78" stroke-width="1.5" opacity=".8"/><path d="M40 30l-6 8h12z" fill="#2B3B1C" opacity=".5"/><path d="M26 70h12v34H26zM42 70h12v34H42z" fill="#C5BB9F" opacity=".8"/></svg>
+    <div class="dc-figs2 rv">
+      <figure class="dc-fig2"><img src="caballero.png" alt="Caballero con guayabera"><figcaption>Caballeros</figcaption><span class="dc-fig-sub">Guayabera</span></figure>
+      <figure class="dc-fig2"><img src="dama.png" alt="Dama con vestido largo"><figcaption>Damas</figcaption><span class="dc-fig-sub">Vestido con flores</span></figure>
     </div>
     <p class="dc-col-ttl rv" style="margin-top:8px">Colores a evitar</p>
-    <div class="dc-palette rv">
-      <div class="dc-sw"><span class="dc-sw-c" style="background:#FFFFFF"></span><span class="dc-sw-n">Blanco</span></div>
-      <div class="dc-sw"><span class="dc-sw-c" style="background:#b51a00"></span><span class="dc-sw-n">Rojo</span></div>
+    <div class="dc-swap rv" id="dcSwap">
+      <div class="dc-sw2"><span class="dc-dot" style="background:#FFFFFF"></span><span class="dc-sw2-n">Blanco</span></div>
+      <div class="dc-sw2"><span class="dc-dot" style="background:#b51a00"></span><span class="dc-sw2-n">Rojo</span></div>
     </div>
     <div class="no-kids rv">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a7 7 0 0 1 13 0"/><line x1="18" y1="3" x2="21" y2="6"/><line x1="21" y1="3" x2="18" y2="6"/></svg>
@@ -856,15 +943,39 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
   </div>
 
   <!-- REGALOS -->
-  <section id="regalos" class="sec sec--bg">
-    <p class="eyebrow rv">Mesa de Regalos</p>
-    <h2 class="script-title rv">Lluvia de Sobres</h2>
-    <div class="gift-card rv sheen">
-      <svg class="gift-env" viewBox="0 0 64 48" fill="none" aria-hidden="true"><rect x="2" y="6" width="60" height="40" rx="3" stroke="#EFBFB3" stroke-width="1.6"/><path d="M2 8l30 22L62 8" stroke="#EFBFB3" stroke-width="1.6"/><circle cx="32" cy="30" r="5" fill="#E9DFB4"/></svg>
-      <p class="gift-msg">
-        Tu presencia es el regalo más valioso para nosotros.<br>
-        Si deseas tener un detalle con nosotros, tendremos una caja para la lluvia de sobres el día de la celebración.
-      </p>
+  <section id="regalos" class="sec sec--bg" style="text-align:center">
+    <div class="ink-bg " aria-hidden="true"><i style="background-image:url('ink/ink-oval.webp')"></i></div>
+    <div class="env-rain" id="envRain" aria-hidden="true"></div>
+    <div class="env-stage">
+      <p class="eyebrow rv">Mesa de Regalos</p>
+      <h2 class="script-title rv">Lluvia de Sobres</h2>
+      <button class="env-interactive" id="envGift" type="button" aria-label="Sobre — toca para abrir" aria-expanded="false">
+        <div class="env-body" id="envGiftBody">
+          <svg class="env-svg" viewBox="0 0 260 200" preserveAspectRatio="none" aria-hidden="true">
+            <defs><linearGradient id="envPaper" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#fff8e6"/><stop offset="100%" stop-color="#f7ecd2"/></linearGradient></defs>
+            <rect x="18" y="52" width="224" height="132" rx="8" fill="url(#envPaper)" stroke="#D4AF37" stroke-width="1.6"/>
+            <path d="M18 184 L130 110 L242 184" stroke="rgba(160,128,40,.45)" stroke-width="1" fill="none"/>
+          </svg>
+          <div class="env-flap-wrap" aria-hidden="true">
+            <svg viewBox="0 0 224 86" preserveAspectRatio="none" style="width:100%;height:100%;display:block">
+              <defs><linearGradient id="envFlap" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#f7ecd2"/><stop offset="100%" stop-color="#fffaef"/></linearGradient></defs>
+              <path d="M0 0 L112 86 L224 0 Z" fill="url(#envFlap)" stroke="#D4AF37" stroke-width="1.6" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <svg class="env-seal" viewBox="0 0 60 60" aria-hidden="true">
+            <circle cx="30" cy="30" r="28" fill="#44562F"/>
+            <circle cx="30" cy="30" r="28" fill="none" stroke="#1f2b14" stroke-width="2" opacity=".55"/>
+            <circle cx="30" cy="30" r="21.5" fill="none" stroke="#E9DFB4" stroke-width="1.1" opacity=".9"/>
+            <text x="30" y="36.5" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-weight="600" font-size="17" fill="#E9DFB4">S&amp;M</text>
+          </svg>
+        </div>
+        <div class="env-open-content" aria-live="polite">
+          <svg class="env-mailbox-icon" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="22" width="36" height="24" rx="5"/><path d="M8 30 Q26 38 44 30"/><rect x="18" y="8" width="16" height="16" rx="2"/><path d="M18 8 Q26 3 34 8"/></svg>
+          <p class="env-title">Tu presencia es nuestro regalo</p>
+          <p class="env-desc">Si deseas tener un detalle con nosotros, el día de la celebración habrá una caja para la lluvia de sobres.</p>
+        </div>
+      </button>
+      <button class="env-tap-hint" id="envGiftHint" type="button">Toca para abrir</button>
     </div>
   </section>
 
@@ -884,6 +995,7 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
 
   <!-- ÁLBUM -->
   <section id="album" class="sec sec--blush bot-frame">
+    <div class="ink-bg flip" aria-hidden="true"><i style="background-image:url('ink/ink-corner.webp')"></i></div>
     <p class="eyebrow rv">Comparte el Momento</p>
     <h2 class="script-title rv">Álbum Compartido</h2>
     <p class="album-note rv">¡Queremos ver la fiesta a través de tus ojos! El código para subir tus fotos y videos se activará el día de la celebración.</p>
@@ -911,22 +1023,24 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
 
   <!-- RSVP -->
   <section id="rsvp" class="sec sec--surface bot-frame">
+    <div class="ink-bg " aria-hidden="true"><i style="background-image:url('ink/ink-footer.webp')"></i></div>
     <p class="eyebrow rv">Confirma tu Asistencia</p>
     <h2 class="script-title rv">R.S.V.P.</h2>
     <p class="rsvp-note rv">Te pedimos confirmar a más tardar el 15 de diciembre de 2026</p>
-    <p class="rsvp-hola rv" id="rsvp-hola"></p>
+    <p class="rsvp-hi rv" id="rsvp-hola"></p>
     <div class="rsvp-card rv">
-      <div class="rsvp-field" id="rsvp-pases-wrap" style="display:none">
-        <label>Pases en tu invitación</label>
-        <div class="rsvp-pases-display" id="rsvpPasesDisplay">—</div>
+      <div class="rsvp-pases-row" id="rsvp-pases-wrap" style="display:none">
+        <div class="rsvp-pases"><span class="rsvp-pases-label">Pases</span><span class="rsvp-pases-num" id="rsvpPasesDisplay">1</span></div>
+        <div class="rsvp-pases"><span class="rsvp-pases-label">Menores</span><span class="rsvp-pases-num">0</span></div>
       </div>
+      <p class="rsvp-dl">Evento solo para adultos</p>
       <div id="rsvp-bandeja">
         <div class="rsvp-toggle">
           <button class="rsvp-toggle-btn" id="btnYes" type="button">Asistiré</button>
           <button class="rsvp-toggle-btn" id="btnNo" type="button">No podré asistir</button>
         </div>
         <div id="rsvpNombresWrap" style="display:none"></div>
-        <button class="btn-wa-bot rsvp-breathe" id="rsvp-confirm-btn" type="button"><span id="rsvp-btn-text">Confirmar asistencia</span></button>
+        <button class="rsvp-btn2" id="rsvp-confirm-btn" type="button"><span id="rsvp-btn-text">Confirmar asistencia</span></button>
       </div>
       <div class="rsvp-gracias" id="rsvp-gracias" style="display:none">
         <svg class="rsvp-gracias-icon" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="8.5 12.5 11 15 16 9.5"/></svg>
@@ -1010,11 +1124,11 @@ gsap.registerPlugin(ScrollTrigger);
   var hola=$('rsvp-hola'),wrapP=$('rsvp-pases-wrap'),disp=$('rsvpPasesDisplay'),campos=$('rsvpNombresWrap');
   var bYes=$('btnYes'),bNo=$('btnNo'),bOk=$('rsvp-confirm-btn'),bTxt=$('rsvp-btn-text');
   var bandeja=$('rsvp-bandeja'),gracias=$('rsvp-gracias'),gT=$('rsvp-gracias-title'),gS=$('rsvp-gracias-sub'),editar=$('rsvp-editar-btn'),fb=$('rsvp-feedback');
-  if(para){hola.textContent='Querido(a) '+para+', nos encantaría contar contigo.';wrapP.style.display='';disp.textContent=pases===1?'1 pase':pases+' pases';}
+  if(para){hola.textContent=para;wrapP.style.display='';disp.textContent=pases;}
   else{hola.textContent='Abre el enlace personal que recibiste para confirmar.';}
   for(var i=1;i<=pases;i++){
     var d=document.createElement('div');d.className='rsvp-field';
-    var inp=document.createElement('input');inp.type='text';inp.id='rsvpName'+i;
+    var inp=document.createElement('input');inp.type='text';inp.id='rsvpName'+i;inp.className='rsvp-input';
     inp.placeholder='Nombre completo del invitado '+i;inp.autocomplete=i===1?'name':'off';
     inp.setAttribute('aria-label','Nombre completo del invitado '+i);
     d.appendChild(inp);campos.appendChild(d);
@@ -1180,6 +1294,7 @@ tick();setInterval(tick,1000);
 /* ─── ANIMACIONES PRINCIPALES ─── */
 function initAll(){
   if(window._vida)window._vida();
+  if(window._paquete)window._paquete();
   const prefRed=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   /* scroll reveal genérico */
@@ -1208,55 +1323,7 @@ function initAll(){
     }});
   }
 
-  /* galería: fotos que caen */
-  (function(){
-    const finalRotations=[-4,2,-3,3,-2,2,-3,4];
-    const photos=[1,2,3,4,5,6,7,8].map((n,i)=>({el:document.getElementById('dropP'+n),rot:finalRotations[i]}));
-    ScrollTrigger.create({
-      trigger:'#dropStage',start:'top 80%',once:true,
-      onEnter(){
-        photos.forEach((p,i)=>{
-          gsap.set(p.el,{y:-180,rotation:p.rot+(i%2===0?25:-20),opacity:0});
-          gsap.to(p.el,{
-            y:0,rotation:p.rot,opacity:1,
-            duration:.9,ease:'power3.out',
-            delay:i*0.12,
-            onComplete(){
-              gsap.to(p.el,{y:-6,rotation:p.rot*.5,duration:.12,ease:'power1.out',
-                onComplete(){gsap.to(p.el,{y:0,rotation:p.rot,duration:.18,ease:'power2.inOut'});}
-              });
-            }
-          });
-        });
-      }
-    });
-    const lightbox=document.getElementById('gallery-lightbox');
-    const lbImg=document.getElementById('gallery-lb-img');
-    const lbOverlay=document.getElementById('gallery-lb-overlay');
-
-    function openLightbox(src){
-      lbImg.src=src;
-      lightbox.classList.add('open');
-      gsap.to(lbOverlay,{opacity:1,duration:.35,ease:'power2.out'});
-      gsap.fromTo(lbImg,{scale:.82,opacity:0},{scale:1,opacity:1,duration:.4,ease:'back.out(1.4)'});
-    }
-    function closeLightbox(){
-      gsap.to(lbImg,{scale:.88,opacity:0,duration:.25,ease:'power2.in'});
-      gsap.to(lbOverlay,{opacity:0,duration:.3,ease:'power2.in',onComplete(){
-        lightbox.classList.remove('open');
-        lbImg.src='';
-      }});
-    }
-    lbOverlay.addEventListener('click',closeLightbox);
-    lbImg.addEventListener('click',closeLightbox);
-
-    photos.forEach((p)=>{
-      p.el.addEventListener('click',()=>{
-        const src=p.el.querySelector('img').src;
-        openLightbox(src);
-      });
-    });
-  })();
+  initWheel();
 
   const sh=document.getElementById('scrollHint');
   if(sh){const hide=()=>{sh.classList.add('hidden');window.removeEventListener('scroll',hide);};window.addEventListener('scroll',hide,{passive:true});}
@@ -1325,8 +1392,6 @@ window._vida=function(){
   });
   if(red)return;
   /* hero parallax */
-  gsap.to('.hero-bg',{yPercent:18,scale:1.08,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
-  gsap.to('.hero-content',{y:-80,opacity:0,ease:'none',scrollTrigger:{trigger:'#hero',start:'40% top',end:'bottom top',scrub:true}});
   /* familia stagger */
   document.querySelectorAll('.fam-list').forEach(function(l){
     gsap.fromTo(l.children,{opacity:0,y:18},{opacity:1,y:0,duration:.7,stagger:.1,ease:'power2.out',scrollTrigger:{trigger:l,start:'top 88%'}});
@@ -1350,6 +1415,129 @@ window._vida=function(){
   var sec=document.getElementById('cd-s');
   setInterval(function(){sec.classList.add('glow');setTimeout(function(){sec.classList.remove('glow');},450);},1000);
   ScrollTrigger.refresh();
+};
+</script>
+<script>
+/* ══ FUNDIDOS ENTRE SECCIONES ══ */
+function initSectionFades(){
+  var els=[].slice.call(document.querySelectorAll('.wrap > section, .wrap > .ornament, .wrap > footer'));
+  var pageBg=getComputedStyle(document.body).backgroundColor;
+  function parse(c){var m=(c||'').match(/[\d.]+/g);if(!m)return null;var a=m.length>3?+m[3]:1;return a<0.05?null:[+m[0],+m[1],+m[2]];}
+  var PB=parse(pageBg)||[43,59,28];
+  function edge(el,side){var d=el.getAttribute(side==='t'?'data-top':'data-bot');if(d)return parse(d)||PB;return parse(getComputedStyle(el).backgroundColor)||PB;}
+  function grad(c,dir){var st=[];for(var i=0;i<=8;i++){var t=i/8,a=1-t*t*(3-2*t);st.push('rgba('+c.map(Math.round).join(',')+','+a.toFixed(3)+') '+(t*100).toFixed(1)+'%');}return 'linear-gradient('+dir+','+st.join(',')+')';}
+  els.forEach(function(el){el.querySelectorAll(':scope > .sf').forEach(function(x){x.remove();});});
+  for(var i=0;i<els.length-1;i++){
+    var A=els[i],B=els[i+1];
+    var ca=edge(A,'b'),cb=edge(B,'t'),mid=[(ca[0]+cb[0])/2,(ca[1]+cb[1])/2,(ca[2]+cb[2])/2];
+    var isHero=A.id==='hero';
+    var hA=isHero?90:Math.min(170,A.offsetHeight/2),hB=Math.min(isHero?120:170,B.offsetHeight/2);
+    var a=document.createElement('i');a.className='sf b';a.style.height=hA+'px';a.style.background=grad(mid,'to top');
+    if(isHero)a.style.zIndex='1';
+    A.appendChild(a);
+    var b=document.createElement('i');b.className='sf t';b.style.height=hB+'px';b.style.background=grad(mid,'to bottom');B.appendChild(b);
+  }
+}
+
+/* ══ GALERÍA 3D ══ */
+function initWheel(){
+  var ring=document.getElementById('wheel-ring'),scene=document.getElementById('wheel-scene');
+  if(!ring)return;
+  var cards=[].slice.call(ring.querySelectorAll('.wheel-card')),n=cards.length;
+  var radius=innerWidth<768?230:300;
+  cards.forEach(function(c,i){c.style.transform='rotateY('+(360/n*i)+'deg) translateZ('+radius+'px)';});
+  var rot=0,vel=0,drag=false,startX=0,startRot=0,lastX=0,moved=0,auto=true,visible=true,resumeT=null;
+  var red=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function setRot(){ring.style.transform='rotateY('+rot+'deg)';}
+  gsap.ticker.add(function(){
+    if(!visible||drag)return;
+    if(Math.abs(vel)>0.02){rot+=vel;vel*=0.94;}
+    else if(auto&&!red){rot+=0.12;}
+    setRot();
+  });
+  if('IntersectionObserver' in window){new IntersectionObserver(function(es){visible=es[0].isIntersecting;}).observe(scene);}
+  function down(x){drag=true;moved=0;ring.classList.add('dragging');startX=lastX=x;startRot=rot;vel=0;auto=false;clearTimeout(resumeT);}
+  function move(x){if(!drag)return;moved=Math.max(moved,Math.abs(x-startX));rot=startRot+(x-startX)*0.45;vel=(x-lastX)*0.5;lastX=x;setRot();}
+  function up(){if(!drag)return;drag=false;ring.classList.remove('dragging');resumeT=setTimeout(function(){auto=true;},1800);}
+  ring.addEventListener('mousedown',function(e){e.preventDefault();down(e.clientX);});
+  addEventListener('mousemove',function(e){move(e.clientX);});
+  addEventListener('mouseup',up);
+  ring.addEventListener('touchstart',function(e){down(e.touches[0].clientX);},{passive:true});
+  ring.addEventListener('touchmove',function(e){move(e.touches[0].clientX);},{passive:true});
+  ring.addEventListener('touchend',up);
+  var lb=document.getElementById('gallery-lightbox'),lbImg=document.getElementById('gallery-lb-img'),lbO=document.getElementById('gallery-lb-overlay');
+  function close(){gsap.to(lbImg,{scale:.88,opacity:0,duration:.25});gsap.to(lbO,{opacity:0,duration:.3,onComplete:function(){lb.classList.remove('open');lbImg.src='';}});}
+  lbO.addEventListener('click',close);lbImg.addEventListener('click',close);
+  cards.forEach(function(c){c.addEventListener('click',function(){
+    if(moved>8)return;
+    lbImg.src=c.dataset.src;lb.classList.add('open');
+    gsap.to(lbO,{opacity:1,duration:.35});gsap.fromTo(lbImg,{scale:.82,opacity:0},{scale:1,opacity:1,duration:.4,ease:'back.out(1.4)'});
+  });});
+}
+
+/* ══ LLUVIA DE SOBRES ══ */
+function initSobres(){
+  var sec=document.getElementById('regalos'),rain=document.getElementById('envRain'),
+      btn=document.getElementById('envGift'),body=document.getElementById('envGiftBody'),hint=document.getElementById('envGiftHint');
+  if(!sec||!btn)return;
+  var red=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var landed=false,landing=false,openAfter=false,alive=0,MAX=22,inView=false,spawn=null;
+  function make(){
+    if(alive>=MAX||!inView)return;alive++;
+    var depth=Math.random(),w=14+depth*24;
+    var el=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    el.setAttribute('viewBox','0 0 34 24');el.setAttribute('class','env-rain-item');
+    el.style.width=w+'px';el.style.height=(w*24/34)+'px';el.style.left=(Math.random()*96)+'%';
+    el.innerHTML='<rect x="1" y="1" width="32" height="22" rx="2.5" fill="#fbf2dc" stroke="#D4AF37" stroke-width="1.3"/><path d="M1 1 L17 13 L33 1" fill="none" stroke="#D4AF37" stroke-width="1.3" stroke-linejoin="round"/><circle cx="17" cy="13" r="3.2" fill="#44562F"/>';
+    rain.appendChild(el);
+    var H=sec.offsetHeight+80,dur=9-depth*4+Math.random()*2,op=.35+depth*.5;
+    gsap.timeline({onComplete:function(){el.remove();alive--;}})
+      .fromTo(el,{y:-50,x:0,rotation:(Math.random()-.5)*50},{y:H,x:(Math.random()-.5)*70,rotation:(Math.random()-.5)*160,duration:dur,ease:'none'},0)
+      .fromTo(el,{opacity:0},{opacity:op,duration:dur*.18},0)
+      .to(el,{opacity:0,duration:dur*.25},dur*.75);
+  }
+  function loop(){spawn=gsap.delayedCall(.45,function(){make();loop();});}
+  if(!red){
+    ScrollTrigger.create({trigger:sec,start:'top bottom',end:'bottom top',onToggle:function(st){inView=st.isActive;if(inView){for(var i=0;i<6;i++)gsap.delayedCall(i*.25,make);}}});
+    loop();
+  }
+  function land(){
+    if(landed||landing)return;landing=true;
+    gsap.fromTo(btn,{opacity:0,y:-150,rotation:-12,scale:.82},{opacity:1,y:0,rotation:0,scale:1,duration:red?.01:1.15,ease:'back.out(1.5)',onComplete:function(){
+      landed=true;landing=false;body.classList.add('landed');hint.classList.add('show');
+      if(openAfter){openAfter=false;toggle();}
+    }});
+  }
+  ScrollTrigger.create({trigger:sec,start:'center 60%',once:true,onEnter:land,onEnterBack:land});
+  setTimeout(function(){if(!landed&&!landing){gsap.set(btn,{opacity:1});}},15000);
+  function toggle(){
+    var open=btn.classList.toggle('open');
+    btn.setAttribute('aria-expanded',open?'true':'false');
+    hint.textContent=open?'Toca para cerrar':'Toca para abrir';
+    body.classList.toggle('landed',!open);
+    ScrollTrigger.refresh();
+  }
+  function tap(e){if(e)e.preventDefault();if(!landed){openAfter=true;land();return;}toggle();}
+  btn.addEventListener('click',tap);hint.addEventListener('click',tap);
+}
+
+/* ══ DRESS CODE: distancia del intercambio ══ */
+function initSwap(){
+  var w=document.getElementById('dcSwap');if(!w)return;
+  var it=w.children;if(it.length<2)return;
+  w.style.setProperty('--d',(it[1].offsetLeft-it[0].offsetLeft)+'px');
+}
+
+/* ══ HERO al hacer scroll ══ */
+function initHeroScroll(){
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  gsap.to('.hero-content',{y:-110,opacity:0,filter:'blur(10px)',ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.hero-bg',{y:-70,filter:'blur(5px) brightness(.92)',ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+}
+window._paquete=function(){
+  initSectionFades();initSobres();initSwap();initHeroScroll();
+  var t;addEventListener('resize',function(){clearTimeout(t);t=setTimeout(function(){initSectionFades();initSwap();},200);});
+  setTimeout(initSectionFades,1500);
 };
 </script>
 <script>
