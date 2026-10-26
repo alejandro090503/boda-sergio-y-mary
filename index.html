@@ -591,6 +591,32 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
 background:linear-gradient(100deg,#B8923A 0%,#E9CF85 30%,#F7E7CE 48%,#D4AF37 66%,#A8841F 100%)!important;background-size:220% 100%!important;animation:goldSweep 6s linear infinite!important;
 box-shadow:0 10px 30px -8px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,250,230,.8),0 0 0 4px rgba(212,175,55,.18)!important;text-shadow:0 1px 0 rgba(255,245,215,.6);backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 #envelope-screen{background:#2B3B1C!important}
+/* RSVP · diseño boda-jennifer-y-marcel */
+#rsvp .rsvp-jm{--paper:#F5F0E4;--surface:#FBF8F1;--ink:#2A2B26;--ink-soft:#4A4C43;--sage:#56694D;--sage-deep:#3F4F39;--hair:rgba(63,79,57,.26);
+  max-width:440px;margin:24px auto 0;padding:34px 22px 30px;background:var(--paper);border:1px solid var(--hair);border-radius:18px;box-shadow:0 30px 80px -30px rgba(0,0,0,.6);text-align:center;text-shadow:none}
+#rsvp .rsvp-jm *{text-shadow:none!important}
+#rsvp .rsvp-jm .rsvp-hi{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:30px;color:var(--ink);margin:0 0 6px}
+#rsvp .rsvp-jm .rsvp-pases-row{display:flex;justify-content:center;margin:12px 0 6px}
+#rsvp .rsvp-jm .rsvp-pases{display:inline-flex;flex-direction:column;align-items:center;padding:14px 30px;border:1px solid var(--hair);border-radius:16px;background:var(--surface)}
+#rsvp .rsvp-jm .rsvp-pases-label{font-family:'Jost',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:3px;text-transform:uppercase;color:var(--sage)}
+#rsvp .rsvp-jm .rsvp-pases-num{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:54px;line-height:1;color:var(--sage-deep)}
+#rsvp .rsvp-jm .rsvp-dl{font-family:'Jost',sans-serif;font-weight:600;font-size:16px;color:var(--ink);margin:10px 0 0}
+#rsvp .rsvp-jm #rsvp-bandeja{max-width:420px;margin:24px auto 0}
+#rsvp .rsvp-jm .rsvp-toggle{display:grid!important;grid-template-columns:1fr 1fr;gap:10px}
+#rsvp .rsvp-jm .rsvp-toggle-btn{min-height:52px!important;border-radius:14px!important;border:1.5px solid var(--hair)!important;background:var(--surface)!important;font-family:'Jost',sans-serif!important;font-weight:600!important;font-size:15px!important;color:var(--ink)!important}
+#rsvp .rsvp-jm .rsvp-toggle-btn.on{background:var(--sage-deep)!important;border-color:var(--sage-deep)!important;color:var(--paper)!important}
+#rsvp .rsvp-jm #rsvpNombresWrap{margin-top:16px;display:grid;gap:10px}
+#rsvp .rsvp-jm #rsvpNombresWrap .rsvp-field{margin:0}
+#rsvp .rsvp-jm #rsvpNombresWrap .rsvp-input{margin:0;min-height:52px;padding:12px 16px;border-radius:12px!important;border:1.5px solid rgba(63,79,57,.35)!important;background:#fff!important;color:var(--ink)!important}
+#rsvp .rsvp-jm #rsvpNombresWrap .rsvp-input::placeholder{color:#6E7066!important}
+#rsvp .rsvp-jm .rsvp-btn2{width:100%;margin-top:18px;min-height:56px;border-radius:999px;border:none;background:var(--sage-deep);color:var(--paper);font-family:'Jost',sans-serif;font-weight:700;font-size:15px;letter-spacing:2px;text-transform:uppercase}
+#rsvp .rsvp-jm .rsvp-gracias{max-width:400px;margin:20px auto 0;padding:28px 22px;background:var(--surface);border:1.5px solid var(--hair);border-radius:16px}
+#rsvp .rsvp-jm .rsvp-gracias-icon{color:var(--sage)}
+#rsvp .rsvp-jm .rsvp-gracias-title{font-size:26px;font-weight:700;color:var(--ink)}
+#rsvp .rsvp-jm .rsvp-gracias-sub{font-size:18px;color:var(--ink-soft)}
+#rsvp .rsvp-jm .rsvp-editar-btn{min-height:46px;border:1.5px solid var(--hair);color:var(--sage-deep);font-weight:600;font-size:14px}
+#rsvp .rsvp-jm #rsvp-feedback{font-weight:600;font-size:15px;color:var(--sage-deep)}
+#rsvp .rsvp-jm #rsvp-feedback.err{color:#8A2E1F}
 </style>
 </head>
 <body>
@@ -624,7 +650,7 @@ box-shadow:0 10px 30px -8px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,250,230,.8),0
 <!-- ENVELOPE -->
 <div id="envelope-screen">
   <img id="envImage" src="sobre.jpg" alt="Invitación Sergio y Mary">
-  <video id="envVideo" src="apertura.mp4" muted playsinline preload="auto" poster="sobre.jpg"></video>
+  <video id="envVideo" src="sobre-apertura.mp4" muted playsinline preload="auto" poster="sobre.jpg"></video>
   <div class="env-tap" id="envTap">Toca para abrir</div>
 </div>
 
@@ -1109,11 +1135,10 @@ box-shadow:0 10px 30px -8px rgba(0,0,0,.65),inset 0 1px 0 rgba(255,250,230,.8),0
     <p class="eyebrow rv">Confirma tu Asistencia</p>
     <h2 class="script-title rv">R.S.V.P.</h2>
     <p class="rsvp-note rv">Te pedimos confirmar a más tardar el 15 de diciembre de 2026</p>
-    <p class="rsvp-hi rv" id="rsvp-hola"></p>
-    <div class="rsvp-card rv">
+    <div class="rsvp-card rsvp-jm rv">
+      <p class="rsvp-hi" id="rsvp-hola"></p>
       <div class="rsvp-pases-row" id="rsvp-pases-wrap" style="display:none">
         <div class="rsvp-pases"><span class="rsvp-pases-label">Pases</span><span class="rsvp-pases-num" id="rsvpPasesDisplay">1</span></div>
-        <div class="rsvp-pases"><span class="rsvp-pases-label">Menores</span><span class="rsvp-pases-num">0</span></div>
       </div>
       <p class="rsvp-dl">Evento solo para adultos</p>
       <div id="rsvp-bandeja">
