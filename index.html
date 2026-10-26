@@ -1531,8 +1531,8 @@ function initSwap(){
 /* ══ HERO al hacer scroll ══ */
 function initHeroScroll(){
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  gsap.to('.hero-content',{y:-110,opacity:0,filter:'blur(10px)',ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
-  gsap.to('.hero-bg',{y:-70,filter:'blur(5px) brightness(.92)',ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.fromTo('.hero-content',{y:0,opacity:1,filter:'blur(0px)'},{y:-110,opacity:0,filter:'blur(10px)',ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.fromTo('.hero-bg',{y:0,filter:'blur(0px) brightness(1)'},{y:-70,filter:'blur(5px) brightness(.92)',ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:true}});
 }
 window._paquete=function(){
   initSectionFades();initSobres();initSwap();initHeroScroll();
