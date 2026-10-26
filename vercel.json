@@ -4,5 +4,12 @@
       "source": "/((?!.*\\.[a-z0-9]{1,5}$).*)",
       "destination": "/index.html"
     }
+  ],
+  "redirects": [
+    {
+      "source": "/album",
+      "destination": "https://panel-invitados.vercel.app/subir/boda-sergio-y-mary",
+      "permanent": false
+    }
   ]
 }
