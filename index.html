@@ -67,6 +67,11 @@ body{background:var(--bg);color:var(--text);font-family:'Jost',sans-serif;font-w
 #petals{position:fixed;inset:0;z-index:20;pointer-events:none;overflow:hidden}
 .petal{position:absolute;top:-50px;will-change:transform}
 .petal.leaf{border-radius:50% 0 50% 0}
+/* pétalos aterciopelados con brillo suave */
+.petal.leaf,.petal.oval{overflow:hidden;background-image:radial-gradient(ellipse at 28% 25%,rgba(255,215,215,.55) 0%,rgba(255,180,180,.15) 30%,transparent 55%),radial-gradient(ellipse at 75% 80%,rgba(60,0,8,.45) 0%,transparent 60%);box-shadow:inset 0 0 2px rgba(255,200,200,.35)}
+.petal.leaf::after,.petal.oval::after{content:'';position:absolute;inset:-40%;background:linear-gradient(115deg,transparent 38%,rgba(255,240,235,.75) 50%,transparent 62%);transform:translateX(-120%);animation:petalGlint var(--gt,5s) ease-in-out infinite;animation-delay:var(--gd,0s)}
+@keyframes petalGlint{0%,55%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
+@media (prefers-reduced-motion:reduce){.petal::after{animation:none!important}}
 .petal.oval{border-radius:50%}
 .petal.star{clip-path:polygon(50% 0%,56% 44%,100% 50%,56% 56%,50% 100%,44% 56%,0% 50%,44% 44%)}
 
@@ -1371,8 +1376,9 @@ function initEnvelope(){
     p.style.cssText=[
       `width:${size}px`,`height:${h}px`,
       `left:${Math.random()*100}%`,
-      `background:${colors[i%colors.length]}`,
-      `opacity:${(0.2+Math.random()*.55).toFixed(2)}`
+      `background-color:${colors[i%colors.length]}`,
+      `opacity:${(isStar?0.2+Math.random()*.55:0.5+Math.random()*.4).toFixed(2)}`,
+      `--gd:${(-Math.random()*6).toFixed(2)}s`,`--gt:${(4+Math.random()*3).toFixed(2)}s`
     ].join(';');
     wrap.appendChild(p);
     const dur=36+Math.random()*22;
