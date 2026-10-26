@@ -2,3 +2,5 @@
 .claude
 
 .env*
+_src/*.mp4
+_src/fr_*
